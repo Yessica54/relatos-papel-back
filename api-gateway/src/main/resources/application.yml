@@ -1,0 +1,50 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ms-books-catalogue-list
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/book
+          filters:
+            - MethodChangeFilter=GET
+        - id: ms-books-catalogue-create
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/book/create
+          filters:
+            - MethodChangeFilter=POST
+        - id: ms-books-catalogue-put
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/book/{id}/update
+          filters:
+            - MethodChangeFilter=PUT
+        - id: ms-books-catalogue-delete
+          uri: lb://ms-books-catalogue
+          predicates:
+            - Path=/book/{id}/delete
+          filters:
+            - MethodChangeFilter=DELETE
+        - id: ms-books-payment-save
+          uri: lb://ms-books-payments
+          predicates:
+            - Path=/payment
+          filters:
+            - MethodChangeFilter=POST
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eureka-server:8761/eureka/}
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE

@@ -1,0 +1,49 @@
+version: "4"
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - relatos-papel-network
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - relatos-papel-network
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+  ms-books-catalogue:
+    build:
+      context: ./ms-books-catalogue
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - relatos-papel-network
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+  ms-books-payments:
+    build:
+      context: ./ms-books-payments
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - relatos-papel-network
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+networks:
+  relatos-papel-network:
+    driver: bridge
