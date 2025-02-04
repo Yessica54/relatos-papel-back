@@ -21,13 +21,13 @@ spring:
         - id: ms-books-catalogue-put
           uri: lb://ms-books-catalogue
           predicates:
-            - Path=/book/{id}/update
+            - Path=/book/update/{id}
           filters:
             - MethodChangeFilter=PUT
         - id: ms-books-catalogue-delete
           uri: lb://ms-books-catalogue
           predicates:
-            - Path=/book/{id}/delete
+            - Path=/book/delete/{id}
           filters:
             - MethodChangeFilter=DELETE
         - id: ms-books-payment-save

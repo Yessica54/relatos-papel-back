@@ -33,7 +33,6 @@ public class MethodChangeFilter implements GatewayFilterFactory<MethodChangeFilt
             return chain.filter(exchange);
         }
         var request = exchange.getRequest();
-        System.out.println("changing method from "+request.getMethod().toString()+" to "+ config.getMethod());
         var mutatedExchange = exchange.mutate().request(request.mutate().method(HttpMethod.valueOf(config.getMethod())).build())
                 .build();
         return chain.filter(mutatedExchange);
