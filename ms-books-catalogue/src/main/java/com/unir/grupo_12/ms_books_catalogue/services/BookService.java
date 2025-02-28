@@ -25,7 +25,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class BookService {
+public class BookService{
 
     @Autowired
     private final BookRepository bookRepository;

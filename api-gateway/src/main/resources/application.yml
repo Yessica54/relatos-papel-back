@@ -5,37 +5,30 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      routes:
-        - id: ms-books-catalogue-list
-          uri: lb://ms-books-catalogue
-          predicates:
-            - Path=/book
-          filters:
-            - MethodChangeFilter=GET
-        - id: ms-books-catalogue-create
-          uri: lb://ms-books-catalogue
-          predicates:
-            - Path=/book/create
-          filters:
-            - MethodChangeFilter=POST
-        - id: ms-books-catalogue-put
-          uri: lb://ms-books-catalogue
-          predicates:
-            - Path=/book/update/{id}
-          filters:
-            - MethodChangeFilter=PUT
-        - id: ms-books-catalogue-delete
-          uri: lb://ms-books-catalogue
-          predicates:
-            - Path=/book/delete/{id}
-          filters:
-            - MethodChangeFilter=DELETE
-        - id: ms-books-payment-save
-          uri: lb://ms-books-payments
-          predicates:
-            - Path=/payment
-          filters:
-            - MethodChangeFilter=POST
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      globalcors: ## CORS Configuration
+        cors-configurations:
+          '[/**]': ## For all routes
+            allowedOrigins: ${ALLOWED_ORIGINS:*} # With '*' we allow all origins. We can restrict by indicating domains or ip + port, e.g. http://localhost:3000 (where our front is, or a Vercel domain)
+            allowedHeaders: "*" ## All headers allowed
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+management:
+  endpoint:
+    gateway:  
+      enabled: ${ROUTE_TABLES_ENABLED:true}
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
 eureka:
   client:
     serviceUrl:

@@ -37,15 +37,14 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eureka-server:8761/eureka/}
+
+##Elasticsearch config
+elasticsearch:
+  host: ${ELASTICSEARCH_HOST}
+  credentials:
+    user: ${ELASTICSEARCH_USER}
+    password: ${ELASTICSEARCH_PWD}
+    
 logging:
   level:
-    org:
-      springframework:
-        jdbc:
-          datasource:
-            init: DEBUG
-      apache:
-          tomcat:
-            util:
-              net: DEBUG
-              threads: DEBUG
+    tracer: TRACE
