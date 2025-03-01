@@ -63,8 +63,9 @@ public class DataAccessRepository {
             LocalDate publicationDate, int  page) {
 
         BoolQueryBuilder querySpec = QueryBuilders.boolQuery();
-
+        
         if (categoryValues != null && !categoryValues.isEmpty()) {
+            log.info("categoryValues %s", categoryValues.toString());
             categoryValues.forEach(
                     category -> querySpec.must(QueryBuilders.termQuery("category", category)));
         }
@@ -116,6 +117,7 @@ public class DataAccessRepository {
         }
 
         querySpec.must(QueryBuilders.termQuery("status", Status.ACTIVE));
+        log.info(querySpec.toString());
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder().withQuery(querySpec);
 
         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("Category Aggregation")

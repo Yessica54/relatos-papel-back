@@ -1,0 +1,6 @@
+{ "index": { "_index": "books" } }
+{"id": 1, "title": "the lord of the rings", "authors": [ { "id": 1, "name": "J.R.R. Tolkien" } ], "publication_date": "07-10-2013", "category": "Ciencia", "ISBN": "1402516274", "status": "ACTIVE", "range": 1, "availability": 10, "date_created": "10-10-2024", "date_update": "10-10-2024", "cover": "https://covers.openlibrary.org/b/isbn/1402516274-L.jpg", "price": 25.99 }
+{ "index": { "_index": "books" } }
+{"id": 2, "title": "1984", "authors": [ { "id": 2, "name": "George Orwell" } ], "publication_date": "06-08-1949", "category": "Dystopian", "ISBN": "0451524934", "status": "ACTIVE", "range": 1, "availability": 8, "date_created": "10-10-2024", "date_update": "10-10-2024", "cover": "https://covers.openlibrary.org/b/isbn/0451524934-L.jpg", "price": 18.50 }
+{ "index": { "_index": "books" } }
+{"id": 3, "title": "The Catcher in the Rye", "authors": [ { "id": 3, "name": "J.D. Salinger" } ], "publication_date": "07-16-1951", "category": "Fiction", "ISBN": "0316769487", "status": "ACTIVE", "range": 1, "availability": 15, "date_created": "10-10-2024", "date_update": "10-10-2024", "cover": "https://covers.openlibrary.org/b/isbn/0316769487-L.jpg", "price": 22.75 }

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,17 +21,18 @@ import com.unir.grupo_12.ms_books_catalogue.services.BookServiceElasticsearch;
 import com.unir.grupo_12.ms_books_catalogue.util.Status;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@Slf4j
 public class BooksControllerElasticSearch {
 
     private final BookServiceElasticsearch service;
 
     @GetMapping("/books")
     public ResponseEntity<BooksQueryResponse> getBooks(
-            @Param("categories") @RequestParam(required = false) List<String> categoryValues,
+            @RequestParam(value="categories[]", required = false) String[] categoryValues,
             @Param("title") @RequestParam(required = false) String title,
             @Param("ISBN") @RequestParam(required = false) String ISBN,
             @Param("author") @RequestParam(required = false) String author,
@@ -43,8 +43,8 @@ public class BooksControllerElasticSearch {
             @Param("currencies") @RequestParam(required = false) List<String> currencyValues,
             @Param("publicationDate") @RequestParam(required = false) LocalDate publicationDate,
             @Param("page") @RequestParam(required = false, defaultValue = "0") int page) {
-
-        BooksQueryResponse products = service.getBooks(categoryValues, title, ISBN, author, status, range, availability,
+                log.info("categoryValues recibidos: {}", categoryValues);
+        BooksQueryResponse products = service.getBooks(null, title, ISBN, author, status, range, availability,
                 priceValues, currencyValues, publicationDate, page);
         return ResponseEntity.ok(products);
     }
