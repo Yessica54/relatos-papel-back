@@ -20,8 +20,6 @@ spring:
             - PUT
             - DELETE
             - PATCH
-          allowedHeaders: "*"
-          allowCredentials: true
 management:
   endpoint:
     gateway:  
