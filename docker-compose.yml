@@ -32,9 +32,9 @@ services:
       - relatos-papel-network
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - ELASTICSEARCH_HOST=selkis-search-459483220.us-east-1.bonsaisearch.net
-      - ELASTICSEARCH_USER=upjy9xteoh
-      - ELASTICSEARCH_PWD=23n286hmjt
+      - ELASTICSEARCH_HOST=https://w4b7w2jwlh:s96g2pvzo4@test-4128847780.us-east-1.bonsaisearch.net
+      - ELASTICSEARCH_USER=w4b7w2jwlh
+      - ELASTICSEARCH_PWD=s96g2pvzo4
 
 
   ms-books-payments:
